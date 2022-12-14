@@ -1,0 +1,37 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "frame1"
+			"$sizePolicy": 1
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "La Grage"
+				"font": new java.awt.Font( "Z003", 0, 150 )
+				"foreground": &Color0 new java.awt.Color( 255, 0, 51, 255 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 560
+				"height": 160
+				"x": 180
+				"y": 25
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Werlcome Username"
+				"font": new java.awt.Font( "Cantarell", 0, 40 )
+				"foreground": #Color0
+				"horizontalAlignment": 0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 890
+				"height": 90
+				"x": 0
+				"y": 200
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 105, 50 )
+			"size": new java.awt.Dimension( 895, 660 )
+		} )
+	}
+}

@@ -48,11 +48,7 @@ public class Database {
 
         return getTable("users").find(userToFind);
     }
-    public static FindIterable LoginUser() throws IOException{
-        System.out.println("UserName: ");
-        String userName = getUserInput();
-        System.out.println("Password");
-        String passWord = getUserInput();
+    public static FindIterable LoginUser(String userName, String passWord) throws IOException{
 
         Document userToFind = new Document();
 
@@ -76,31 +72,20 @@ public class Database {
         return matcher.find();
     }
 
-    public static void registerUser() throws IOException {
-        System.out.print("UserName: ");
-        String userName = getUserInput();
-        System.out.print("LastName: ");
-        String LastName = getUserInput();
-        System.out.print("FirstName: ");
-        String FirstName = getUserInput();
-        System.out.print("Email: ");
-        String email = getUserInput();
-        System.out.print("Password: ");
-        String password = getUserInput();
+    public static int registerUser(String userName, String email, String FirstName, String LastName, String password) throws IOException {
 
         if(!checkEmail(email)){
             System.out.println("Invalid email address");
-            registerUser();
-            return;
+            return 0;
         }
 
         User newUser = new User(userName, FirstName, LastName, email, password, false);
         if(userValidationDocument(userName, email)){
             System.out.println("User Already Exists");
-            registerUser();
-            return;
+            return 0;
         }
         getTable("users").insertOne(newUser.getDocument());
 
+        return 1;
     }
 }

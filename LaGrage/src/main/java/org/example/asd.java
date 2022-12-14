@@ -5,24 +5,34 @@
 package org.example;
 
 import java.awt.*;
+import java.awt.event.*;
+import java.io.IOException;
 import javax.swing.*;
-import com.intellij.uiDesigner.core.*;
-import com.jgoodies.forms.factories.*;
-import com.jgoodies.forms.layout.*;
-import net.miginfocom.swing.*;
+import javax.xml.crypto.Data;
+
+import static org.example.Main.changeFrame;
 
 /**
  * @author GruescuDaniel
  */
 public class asd extends JPanel {
+    String userName;
     public asd() {
         initComponents();
+    }
+    private void loginUser(MouseEvent e) throws IOException {
+        String userName = textField1.getText();
+        String passWord = passwordField1.getText();
+
+        if(Database.LoginUser(userName,passWord) == null){
+            changeFrame(userName);
+        }
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - GruescuDaniel
-        frame1 = new Frame();
+        // Generated using JFormDesigner Evaluation license - Danziel
+        frame1 = new JFrame();
         textField1 = new JTextField();
         label4 = new JLabel();
         label5 = new JLabel();
@@ -34,6 +44,7 @@ public class asd extends JPanel {
         //======== frame1 ========
         {
             frame1.setTitle("Log In");
+            frame1.setAutoRequestFocus(false);
             frame1.setLayout(null);
 
             //---- textField1 ----
@@ -61,6 +72,16 @@ public class asd extends JPanel {
             button1.setForeground(new Color(0xff3300));
             button1.setBackground(Color.white);
             button1.setFont(new Font("Ubuntu", Font.PLAIN, 48));
+            button1.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    try {
+                        loginUser(e);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
             frame1.add(button1);
             button1.setBounds(new Rectangle(new Point(350, 355), button1.getPreferredSize()));
 
@@ -69,7 +90,7 @@ public class asd extends JPanel {
             button2.setForeground(new Color(0xff3333));
             button2.setBackground(Color.white);
             frame1.add(button2);
-            button2.setBounds(new Rectangle(new Point(265, 425), button2.getPreferredSize()));
+            button2.setBounds(new Rectangle(new Point(265, 460), button2.getPreferredSize()));
 
             //---- label3 ----
             label3.setText("La Grage");
@@ -104,8 +125,8 @@ public class asd extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - GruescuDaniel
-    private Frame frame1;
+    // Generated using JFormDesigner Evaluation license - Danziel
+    public JFrame frame1;
     private JTextField textField1;
     private JLabel label4;
     private JLabel label5;

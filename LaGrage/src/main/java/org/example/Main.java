@@ -15,6 +15,8 @@ import javax.swing.*;
 
 public class Main {
 
+    static HomePage WelcomeFrame = new HomePage("");
+    static JFrame frame = null;
 
     static Logger root = (Logger) LoggerFactory
             .getLogger(Logger.ROOT_LOGGER_NAME);
@@ -23,9 +25,26 @@ public class Main {
         root.setLevel(Level.OFF);
     }
 
+
+    public static void changeFrame(String username){
+        frame.setVisible(false);
+        WelcomeFrame.setUserName(username);
+        System.out.println(WelcomeFrame.userName);
+        WelcomeFrame.frame1.pack();
+        WelcomeFrame.frame1.setVisible(true);
+    }
+
     public static void main(String[] args) throws IOException {
 
-        JFrame frame = new sign_in().frame1;
+
+        if(args[0].toString().equals("SignUp"))
+            frame = new sign_in().frame1;
+        else if (args[0].toString().equals("LogIn")) {
+            frame = new asd().frame1;
+        }
+
+        WelcomeFrame.frame1.setVisible(false);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

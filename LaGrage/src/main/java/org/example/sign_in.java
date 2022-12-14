@@ -6,8 +6,10 @@ package org.example;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import javax.swing.*;
-import net.miginfocom.swing.*;
+
+import static org.example.Main.changeFrame;
 
 /**
  * @author GruescuDaniel
@@ -17,13 +19,34 @@ public class sign_in extends JFrame {
         initComponents();
     }
 
+
+    private void sendRegister(MouseEvent e) throws IOException {
+        //First Name - TextField1
+        //Last Name - TextField5
+        //Email - TextField2
+        //Username - TextField3
+        //Password - passwordFiel1
+        //ConfirmPassword - passwordField2
+
+        String username = textField3.getText();
+        String email = textField2.getText();
+        String firstName = textField1.getText();
+        String lastName = textField5.getText();
+        String password = passwordField1.getText();
+
+        if(Database.registerUser(username,email,firstName,lastName,password ) == 1){
+            System.out.println("User Registered");
+            changeFrame(username);
+        }
+    }
+
     private void button1MouseClicked(MouseEvent e) {
         // TODO add your code here
     }
 
     public void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - GruescuDaniel
+        // Generated using JFormDesigner Evaluation license - Danziel
         frame1 = new JFrame();
         textField1 = new JTextField();
         label4 = new JLabel();
@@ -76,6 +99,11 @@ public class sign_in extends JFrame {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     button1MouseClicked(e);
+                    try {
+                        sendRegister(e);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             });
             frame1.add(button1);
@@ -173,7 +201,7 @@ public class sign_in extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - GruescuDaniel
+    // Generated using JFormDesigner Evaluation license - Danziel
     public JFrame frame1;
     private JTextField textField1;
     private JLabel label4;
